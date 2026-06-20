@@ -1,0 +1,19 @@
+# Sensitive
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+venv/
+
+# Database
+*.db
+
+# Tests
+test_app.py
+
+# IDE
+.vscode/
+.idea/

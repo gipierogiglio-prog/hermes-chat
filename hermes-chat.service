@@ -1,0 +1,15 @@
+[Unit]
+Description=Hermes Chat - Web App with Google OAuth
+After=network.target
+
+[Service]
+Type=simple
+User=gian
+WorkingDirectory=/home/gian/hermes-chat
+ExecStart=/home/gian/.hermes/hermes-agent/venv/bin/python3 app.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=default.target
