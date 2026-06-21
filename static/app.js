@@ -85,7 +85,10 @@
       ...options,
     });
     if (resp.status === 401) {
-      window.location.reload();
+      // Só reload se era uma requisição autenticada (não o /auth/me)
+      if (url !== '/auth/me' && state.user) {
+        window.location.reload();
+      }
       return null;
     }
     if (!resp.ok) {
@@ -109,6 +112,7 @@
         return true;
       }
     } catch (e) { /* not authenticated */ }
+    // Mostra tela de login sem recarregar
     loginScreen.classList.remove('hidden');
     mainApp.classList.add('hidden');
     return false;
