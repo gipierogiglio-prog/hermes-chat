@@ -19,6 +19,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+from starlette.middleware.sessions import SessionMiddleware
 import httpx
 import sqlite3
 import sqlite3 as sqlite
@@ -39,6 +40,9 @@ VAULT_BASE_DIR = Path(os.getenv("VAULT_BASE_DIR", str(Path.home() / "obsidian-va
 DB_PATH = Path(__file__).parent / "chat.db"
 
 app = FastAPI(title="Hermes Chat")
+
+# Session middleware for OAuth state
+app.add_middleware(SessionMiddleware, secret_key=SESSION_SECRET)
 
 # ---------------------------------------------------------------------------
 # Database
